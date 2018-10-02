@@ -40,10 +40,9 @@ DATASEG
 	ctr_temp db 8 dup (0)
 	;------------------------------------------
 	;------------- Console messages/variables -------------
-	WlcMsg db 0Ah, '	     Welcome to the DES program made by Maxim Gelfand!',  0Ah, 'This program encrypts or decrypts a txt file according to the DES algorithm, ', 0Ah, 'according to the ECB, CBC and CTR modes of operation and with padding according to PKCS#7. To get started, create a txt file in the directory from which you arerunning this program, name it des.txt and put', 0Ah
-		   db 'your plaintext or ciphertext there.', 0Ah, 'Press any key when your file is ready.', 0Ah, '$'
+	WlcMsg db 0Ah, '	     Welcome to the DES program made by Maxim Gelfand!',  0Ah, 'This program encrypts or decrypts a txt file according to the DES algorithm, ', 0Ah, 'according to the ECB, CBC and CTR modes of operation and with padding according to PKCS#7. To get started, create a txt file in the directory from which you arerunning this program, name it des.txt and put your plaintext or ciphertext ', 0Ah, 'there.', 2 dup (0Ah), 'Press any key when your file is ready.', 0Ah, '$'
 	ch1Msg db 0Ah, 'For encryption press e,', 0Ah, 'for decryption press d:', 0Ah, '$'
-	modMsg db 0Ah, 'Please choose an operation mode: ', 0Ah, 'Press 1 for ECB (Electronic Code Book), ', 0Ah, 'Press 2 for CBC (Cipher Block Chaining), ', 0Ah, 'Press 3 for CTR (CounTeR, note that the size of the txt file must contain 524280characters at most). ', 0Ah, '$'
+	modMsg db 0Ah, 'Please choose a mode of operation: ', 0Ah, 'Press 1 for ECB (Electronic Code Book), ', 0Ah, 'Press 2 for CBC (Cipher Block Chaining), ', 0Ah, 'Press 3 for CTR (CounTeR, note that the txt file must contain 524280characters at most). ', 0Ah, '$'
 	keyMsg db 0Ah, 'Please enter your secret key: 8 bytes = 16 hexadecimal digits, lowercase. ', 0Ah, 'e.g. 0123456789abcdef :', 0Ah, '$'
 	ivMsg db 0Ah, 'Please enter the initialization vector for the cipher block chaining: 8 bytes = 16 hexadecimal digits, lowercase. e.g. 0123456789abcdef : ', 0Ah, '$'
 	nncMsg db 0Ah, 'Please enter the nonce: 6 bytes = 12 hexadecimal digits, lowercase. ', 0Ah, 'e.g. 0123456789ab : ', 0Ah, '$'
@@ -53,7 +52,7 @@ DATASEG
 	;------------- Files variables -------------
 	filename db 'des.txt', 0
 	filehandle dw ?
-	ErrorMsg db 0Ah, 'Error, file not found. Please create a file with your ciphertext or plaintext, name it des.txt and put it in your TASM/bin directory. Press any key when your ', 0Ah, 'file is ready.', 10, 13,'$'
+	ErrorMsg db 0Ah, 'Error, file not found. Please create a file with your ciphertext or plaintext, name it des.txt and put it in your program directory. Press any key when your ', 0Ah, 'file is ready.', 10, 13,'$'
 	;-------------------------------------------
 	;------------- Padding variables -------------
 	lastBl db 0 ;boolean - operating on last block
